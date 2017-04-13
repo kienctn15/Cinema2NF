@@ -9,12 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="?attr/colorPrimary"
-        android:layout_weight="0.70">
+        android:layout_weight="0.67">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/overlap_pager"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
+            android:layout_width="245dp"
+            android:layout_height="323dp"
             android:layout_gravity="center" />
 
     </me.crosswall.lib.coverflow.core.PagerContainer>

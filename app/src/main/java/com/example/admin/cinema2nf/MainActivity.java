@@ -23,6 +23,8 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.example.admin.cinema2nf.TextTabhost.TextTabhostFragment;
+
 import java.util.HashMap;
 
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity
     TextView tv_header_name, tv_header_name_1;
     TextView nav_logout;
     TabHost tabHost;
-
+    FragmentManager fragmentManager;
     public final static String ACTION_UPDATE = "actionUpdate";
     private BroadcastReceiver updateReceiver;
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initTabHost();
+         fragmentManager = getSupportFragmentManager();
 
         session = new UserSessionManager(getApplicationContext());
 
@@ -85,13 +87,12 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        //auto run TabhostFragment + ShowingMovieActivity
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new TabhostFragment())
+        //auto run Text TabhostFragment
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new TextTabhostFragment())
                 .addToBackStack(null)
                 .commit();
 
-
+// get data from fragment send to activity
 //        updateReceiver = new BroadcastReceiver() {
 //            @Override
 //            public void onReceive(Context context, Intent intent) {
@@ -109,12 +110,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void initTabHost() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new TabhostFragment())
-                .addToBackStack(null)
-                .commit();
-    }
 
     @Override
     public void onBackPressed() {
@@ -155,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
 
         if (id == R.id.nav_signin_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new SigninFragment())
@@ -178,6 +173,9 @@ public class MainActivity extends AppCompatActivity
                     .addToBackStack(null)
                     .commit();
         } else if (id == R.id.nav_share) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new TabLayoutFragment())
+                    .addToBackStack(null)
+                    .commit();
 
         } else if (id == R.id.nav_logout) {
 
