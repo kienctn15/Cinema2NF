@@ -2,7 +2,7 @@ package com.example.admin.cinema2nf;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,22 +17,25 @@ import java.util.ArrayList;
  * Created by Optimus on 4/7/2017.
  */
 
-public class MovieAdapter extends ArrayAdapter {
+public class MovieAdapter extends ArrayAdapter<MovieInfo> {
 
-    Fragment activity;
+    Context context;
     int layout;
     ArrayList<MovieInfo> data;
 
-    public MovieAdapter(MovieAllFragment context, int resource, ArrayList<MovieInfo> object) {
-        super(context(), resource, object);
-        activity = context;
+    public MovieAdapter(Context context, int resource, ArrayList<MovieInfo> object) {
+        super(context, resource, object);
+        this.context = context;
         layout = resource;
         data = object;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View v = activity.getLayoutInflater().inflate(layout, null);
-
+    public View getView(int position, View v, ViewGroup parent) {
+        LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        //View v = context.getLayoutInflater().inflate(layout, null);
+        if (v == null) {
+            v = mInflater.inflate(R.layout.movie_item, null);
+        }
         ImageView img_movie_poster = (ImageView) v.findViewById(R.id.img_movie_poster);
         Picasso.with(getContext()).load(data.get(position).getPosterurl()).into(img_movie_poster);
 
@@ -57,16 +60,16 @@ public class MovieAdapter extends ArrayAdapter {
             } else {
                 if (data.get(position).getAge() == 3) {
                     img_movie_age.setImageResource(R.drawable.c16);
-                }else{
+                } else {
                     img_movie_age.setImageResource(R.drawable.c18);
                 }
             }
         }
 
         ImageView img_movie_format = (ImageView) v.findViewById(R.id.img_movie_format);
-        if (data.get(position).getFormat() == 1){
+        if (data.get(position).getFormat() == 1) {
             img_movie_format.setImageResource(R.drawable.bg2d);
-        }else{
+        } else {
             img_movie_format.setImageResource(R.drawable.bg3d);
         }
 

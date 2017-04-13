@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  * Created by Optimus on 4/12/2017.
  */
 
-public class MovieAllFragment extends Fragment {
+public class MovieAllFragment extends ListFragment {
     View myView;
     FragmentManager fragmentManager;
     private ListView listview;
@@ -122,7 +123,7 @@ public class MovieAllFragment extends Fragment {
     }
 
     private void setMoviesList() {
-        adapter = new MovieAdapter(this, R.layout.movie_item, arrayList);
+        adapter = new MovieAdapter(getActivity(), R.layout.movie_item, arrayList);
         listview.setAdapter(adapter);
     }
 

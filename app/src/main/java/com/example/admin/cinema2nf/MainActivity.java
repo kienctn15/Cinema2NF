@@ -1,5 +1,7 @@
 package com.example.admin.cinema2nf;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
@@ -146,6 +148,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -171,7 +174,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         } else if (id == R.id.nav_movies) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new ThirdFragment())
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new MovieAllFragment())
                     .addToBackStack(null)
                     .commit();
         } else if (id == R.id.nav_share) {
