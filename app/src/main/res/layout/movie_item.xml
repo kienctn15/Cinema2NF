@@ -8,8 +8,7 @@
         android:id="@+id/img_movie_poster"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:padding="2dp"
-        android:src="@drawable/imagexample" />
+        android:padding="2dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,17 +62,15 @@
 
             <ImageView
                 android:id="@+id/img_movie_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:src="@drawable/c13" />
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="5dp" />
 
             <ImageView
                 android:id="@+id/img_movie_format"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:src="@drawable/bg3d" />
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="5dp" />
         </LinearLayout>
     </LinearLayout>
 

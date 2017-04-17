@@ -1,18 +1,23 @@
 package com.example.admin.cinema2nf;
 
+import android.support.v7.widget.RecyclerView;
+
 /**
  * Created by Optimus on 4/7/2017.
  */
 
-public class MovieInfo {
-    String name;
-    String release;
-    double imdb;
-    int duration;
-    String posterurl;
-    int age;
-    int format;
+public class MovieInfo{
+    private String name;
+    private String release;
+    private double imdb;
+    private int duration;
+    private String posterurl;
+    private int age;
+    private int format;
 
+    public MovieInfo(){
+
+    }
     public MovieInfo(String name, String release, double imdb, int duration, String posterurl, int age, int format) {
         this.name = name;
         this.release = release;
