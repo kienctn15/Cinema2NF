@@ -179,11 +179,16 @@
                     android:textColor="@color/LightBlack"
                     android:textSize="13sp" />
 
-                <com.google.android.youtube.player.YouTubePlayerView
+                <FrameLayout
+                    android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+                    android:id="@+id/youTubePlayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <!--<com.google.android.youtube.player.YouTubePlayerView
                     android:id="@+id/vid_movie_detail_trailer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center" />-->
             </LinearLayout>
 
         </LinearLayout>

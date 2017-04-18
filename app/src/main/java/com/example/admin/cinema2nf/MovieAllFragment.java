@@ -3,6 +3,8 @@ package com.example.admin.cinema2nf;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,7 +39,7 @@ public class MovieAllFragment extends Fragment {
     private JSONArray jsonarray;
     {
         try {
-            mSocket = IO.socket("http://192.168.16.109:3000");
+            mSocket = IO.socket("http://192.168.0.32:3000");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,11 +102,12 @@ public class MovieAllFragment extends Fragment {
                         jsonarray = data.getJSONArray("listmovie");
                         for (int i = 0; i < jsonarray.length(); i++) {
                             MovieInfo movies = new MovieInfo(
+                                    jsonarray.getJSONObject(i).getString("id"),
                                     jsonarray.getJSONObject(i).getString("name"),
                                     jsonarray.getJSONObject(i).getString("startday"),
                                     jsonarray.getJSONObject(i).getDouble("imdb"),
                                     jsonarray.getJSONObject(i).getInt("duration"),
-                                    "http://192.168.16.109:3000" + jsonarray.getJSONObject(i).getString("image"),
+                                    "http://192.168.0.32:3000" + jsonarray.getJSONObject(i).getString("image"),
                                     jsonarray.getJSONObject(i).getInt("ages"),
                                     jsonarray.getJSONObject(i).getInt("format")
                             );

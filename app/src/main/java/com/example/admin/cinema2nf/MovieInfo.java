@@ -1,12 +1,11 @@
 package com.example.admin.cinema2nf;
 
-import android.support.v7.widget.RecyclerView;
-
 /**
  * Created by Optimus on 4/7/2017.
  */
 
-public class MovieInfo{
+public class MovieInfo {
+    private String id;
     private String name;
     private String release;
     private double imdb;
@@ -15,10 +14,12 @@ public class MovieInfo{
     private int age;
     private int format;
 
-    public MovieInfo(){
+    public MovieInfo() {
 
     }
-    public MovieInfo(String name, String release, double imdb, int duration, String posterurl, int age, int format) {
+
+    public MovieInfo(String id, String name, String release, double imdb, int duration, String posterurl, int age, int format) {
+        this.id = id;
         this.name = name;
         this.release = release;
         this.imdb = imdb;
@@ -26,6 +27,14 @@ public class MovieInfo{
         this.posterurl = posterurl;
         this.age = age;
         this.format = format;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

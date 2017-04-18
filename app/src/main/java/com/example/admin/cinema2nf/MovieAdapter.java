@@ -1,14 +1,18 @@
 package com.example.admin.cinema2nf;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,13 +26,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     private List<MovieInfo> movieInfoList;
     Context context;
+    FragmentManager fragmentManager;
 
     public MovieAdapter(List<MovieInfo> movieInfoList) {
         this.movieInfoList = movieInfoList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView movie_name, movie_release, movie_imdb, movie_duration;
+        public TextView movie_name, movie_release, movie_imdb, movie_duration, movie_id;
         public ImageView img_poster, img_age, img_format;
 
         public MyViewHolder(View v) {
@@ -37,6 +42,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             movie_release = (TextView) v.findViewById(R.id.movie_date_release);
             movie_duration = (TextView) v.findViewById(R.id.movie_duration);
             movie_imdb = (TextView) v.findViewById(R.id.movie_imdb_point);
+            movie_id = (TextView) v.findViewById(R.id.movie_id);
 
             img_age = (ImageView) v.findViewById(R.id.img_movie_age);
             img_format = (ImageView) v.findViewById(R.id.img_movie_format);
@@ -57,6 +63,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position) {
         MovieInfo movie = movieInfoList.get(position);
         Picasso.with(context).load(movie.getPosterurl()).into(holder.img_poster);
+        holder.movie_id.setText(String.valueOf(movie.getId()));
         holder.movie_name.setText(String.valueOf(movie.getName()));
         holder.movie_imdb.setText("IMDb: " + String.valueOf(movie.getImdb()) + "/10");
         holder.movie_release.setText("Ngày khởi chiếu: " + String.valueOf(movie.getRelease()));
@@ -79,7 +86,29 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         } else {
             holder.img_format.setImageResource(R.drawable.bg3d);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextView tv_id = (TextView)v.findViewById(R.id.movie_id);
+                Fragment fragment = new Fragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("id", tv_id.getText().toString());
+
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                Fragment myFragment = new MovieDetailFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, myFragment).addToBackStack(null).commit();
+                /*fragment.setArguments(bundle);
+                fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new SigninFragment())
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();*/
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
