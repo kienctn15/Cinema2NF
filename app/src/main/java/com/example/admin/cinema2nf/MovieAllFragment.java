@@ -39,7 +39,7 @@ public class MovieAllFragment extends Fragment {
     private JSONArray jsonarray;
     {
         try {
-            mSocket = IO.socket("http://192.168.0.32:3000");
+            mSocket = IO.socket("http://192.168.137.1:3000");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class MovieAllFragment extends Fragment {
                                     jsonarray.getJSONObject(i).getString("startday"),
                                     jsonarray.getJSONObject(i).getDouble("imdb"),
                                     jsonarray.getJSONObject(i).getInt("duration"),
-                                    "http://192.168.0.32:3000" + jsonarray.getJSONObject(i).getString("image"),
+                                    "http://192.168.137.1:3000" + jsonarray.getJSONObject(i).getString("image"),
                                     jsonarray.getJSONObject(i).getInt("ages"),
                                     jsonarray.getJSONObject(i).getInt("format")
                             );
